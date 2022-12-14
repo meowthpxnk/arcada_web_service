@@ -1,0 +1,5 @@
+function loggerData(){
+  
+}
+
+export { loggerData }
