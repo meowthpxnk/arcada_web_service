@@ -80,8 +80,8 @@ export async function validateOrderInfo(info){
     const data = JSON.stringify({dump: dump_info})
     console.log({dump: dump_info})
 
-    const settings = require('@/settings.js')
-    const requestURL = settings.client.url + "createOrder"
+    const api_url = require('@/settings.js').api_url
+    const requestURL = api_url + "createOrder"
 
     // const requestURL = 'http://localhost:8080/createOrder'
 
@@ -115,12 +115,5 @@ export async function validateOrderInfo(info){
     // console.log(get_data)
     return {info: get_data.dump, errors: errors}
   }
-
-
-
-
-
-
-
-  // return {info: dump_info, errors: errors}
+  return {info: dump_info, errors: errors}
 }

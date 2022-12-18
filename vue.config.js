@@ -6,8 +6,7 @@ module.exports = defineConfig({
 	transpileDependencies: true,
 
 	devServer: {
-		host: settings.client.host,
-		port: settings.client.port,
-		proxy: settings.proxy.url,
+		host: '127.0.0.1',
+		port: 8080,
 	},
 })

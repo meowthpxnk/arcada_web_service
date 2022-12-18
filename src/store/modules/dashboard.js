@@ -1,5 +1,4 @@
-const settings = require('@/settings.js')
-const url = settings.client.url
+const api_url = require('@/settings.js').api_url
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -13,7 +12,7 @@ export default {
   actions: {
     async postChangeTurnOfRestaurant(ctx, id){
       const method = "dashboard/changeTurnOfRestaurant/" + id
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST"})
       const data = await responce.json()
@@ -29,7 +28,7 @@ export default {
     async fetchDashboardRestaurants(ctx){
 
       const method = "dashboard/getRestaurants"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
       console.log(requestURL)
 
       const responce = await fetch(requestURL,{method: "GET", 'Content-Type': 'application/json'})
@@ -46,7 +45,7 @@ export default {
     async fetchDashboardMenu(ctx, restaurant_id){
 
       const method = "dashboard/getMenu/" + restaurant_id
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "GET"})
       const data = await responce.json()
@@ -64,7 +63,7 @@ export default {
       data.append('category', JSON.stringify(category))
 
       const method = "dashboard/createCategory"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -92,7 +91,7 @@ export default {
       data.append('category', JSON.stringify(category))
 
       const method = "dashboard/editCategory"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -126,7 +125,7 @@ export default {
       data.append('dish', JSON.stringify(dump.dish))
 
       const method = "dashboard/createDish"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -146,7 +145,7 @@ export default {
 
     async postDashboardDeleteDish(ctx, dump){
       const method = "dashboard/deleteDish"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{
         method: "POST",
@@ -169,7 +168,7 @@ export default {
 
     async postDashboardDeleteCategory(ctx, dump){
       const method = "dashboard/deleteCategory"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{
         method: "POST",
@@ -204,7 +203,7 @@ export default {
       data.append('dish', JSON.stringify(dump.dish))
 
       const method = "dashboard/editDish"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -234,7 +233,7 @@ export default {
       data.append('restaurant', JSON.stringify(dump.restaurant))
 
       const method = "dashboard/createRestaurant"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -253,7 +252,7 @@ export default {
       console.log(id)
 
       const method = "dashboard/deleteRestaurant/" + id
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST"})
       const responce_data = await responce.json()
@@ -285,7 +284,7 @@ export default {
       data.append('restaurant', JSON.stringify(dump.restaurant))
 
       const method = "dashboard/setBannerToRestaurant"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -305,7 +304,7 @@ export default {
       data.append('restaurant', JSON.stringify(dump.restaurant))
 
       const method = "dashboard/deleteBannerToRestaurant"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
@@ -338,7 +337,7 @@ export default {
       data.append('restaurant', JSON.stringify(dump.restaurant))
 
       const method = "dashboard/editRestaurant"
-      const requestURL = url + method + "?" + API_KEY(this.getters.getApiKey)
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
 
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()

@@ -18,13 +18,13 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
+const api_url = require('@/settings.js').api_url
 // const url = settings.proxy.url
 import {capitalize} from "@/methods/additional.js"
 export default {
   data(){
     return{
-      server_url: settings.proxy.url
+      server_url: api_url
     }
   },
   props: {

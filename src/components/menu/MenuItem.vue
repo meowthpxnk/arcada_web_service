@@ -21,12 +21,11 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-// const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 export default {
   data(){
     return{
-      server_url: settings.proxy.url
+      server_url: api_url
     }
   },
   props:{
@@ -52,18 +51,10 @@ export default {
       return this.cart.filter(dish => (dish.id) == this.dish.id)[0]
     },
     isInCart(){
-      // const x = this.getItemFromCart.counter
-      // console.log(x)
-      // this.getItemFromCart.length == 0
-      // console.log()
       return this.getItemFromCart == null
     },
     cartPrice(){
-      // console.log(this.price)
       const a = this.cart.filter(dish => (dish.id) == this.dish.id)[0]
-      // for (var item in this.cart){
-      //   console.log(a)
-      // }
       return a
     },
   },
@@ -78,7 +69,6 @@ export default {
       } else {
         console.error("Item already in cart")
       }
-      // console.log(this.dish.id)
     },
     plusCartItem(){
       this.$emit("plusCartItem", this.dish.id)
@@ -87,12 +77,8 @@ export default {
       this.$emit("minusCartItem", this.dish.id)
     },
     cartPrice0(){
-      // console.log(this.price)
       const a = this.cart.filter(dish => (dish.id) == this.dish.id)[0]
       console.log(a)
-      // for (var item in this.cart){
-      //   console.log(a)
-      // }
     },
   },
   emits: [

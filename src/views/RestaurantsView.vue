@@ -133,16 +133,6 @@
               </div>
             </Transition>
           </div>
-          <!-- <cart-component
-            :cart="cart"
-            :dishes="getDishes"
-            @minusCartItem="minusCartItem"
-            @plusCartItem="plusCartItem"
-          />
-          <pay-button
-            @backToMenu="backToMenu"
-            :cartPrice="cartPrice"
-          /> -->
         </div>
       </div>
     </div>
@@ -198,18 +188,13 @@
     :isShownModalErrorOrder="isShownModalErrorOrder"
   />
 
-  <!-- window.width>768 -->
-
-
 </template>
 
 <script>
 
-const settings = require('@/settings.js')
+const api_url = require('@/settings.js').api_url
 
 import RestaurantSlider from "@/components/slider/RestaurantSlider.vue"
-
-// import  ActiveRestaurants  from '@/components/mixins/active-restaurants/ActiveRestaurants.vue'
 import ModalErrorOrder from "@/components/client-popups/ModalErrorOrder.vue"
 import ModalPreloadScreenAnswer from "@/components/client-popups/ModalPreloadScreenAnswer.vue"
 import ModalPreloaderScreen from "@/components/client-popups/ModalPreloaderScreen.vue"
@@ -227,8 +212,6 @@ import ActiveDishButton from "@/components/ActiveDishButton.vue"
 import { useRoute } from 'vue-router'
 import { fetchWorldTimeForRestaurant } from '@/methods/time.js'
 import { parsePrice } from '@/methods/additional.js'
-// import FriendsModal from "@/components/PizdaTwo/FriendsModal.vue";
-
 
 export default {
   components: {
@@ -262,7 +245,7 @@ export default {
         width: 0,
         height: 0,
       },
-      server_url: settings.proxy.url,
+      server_url: api_url,
       mobile_show_cart: false,
     }
   },

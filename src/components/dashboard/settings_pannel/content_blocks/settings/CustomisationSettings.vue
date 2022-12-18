@@ -44,8 +44,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 import {isHexValidColor} from "@/methods/additional.js"
 export default {
   mounted(){
@@ -95,7 +94,7 @@ export default {
       if(this.selFile.url){
         return this.selFile.url
       }
-      return server_url + this.logo
+      return api_url + this.logo
     }
   },
   methods: {

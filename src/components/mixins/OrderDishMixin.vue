@@ -19,15 +19,11 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-const client_url = settings.client.url
-console.log("client_url")
-console.log(client_url)
-console.log("client_url")
+const api_url = require('@/settings.js').api_url
 export default {
   data(){
     return{
-      server_url: settings.proxy.url,
+      server_url: api_url,
     }
   },
   props:{

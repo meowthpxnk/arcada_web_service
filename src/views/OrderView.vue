@@ -155,8 +155,7 @@
 import { fetchWorldTimeForRestaurant } from '@/methods/time.js'
 import { parseTime } from '@/methods/additional.js'
 import { goToPay } from '@/methods/navigation.js'
-const settings = require('@/settings.js')
-const client_url = settings.client.url
+const api_url = require('@/settings.js').api_url
 import ModalPreloaderScreen from "@/components/client-popups/ModalPreloaderScreen.vue"
 import ModalQuest from "@/components/client-popups/ModalQuest.vue"
 import ModalRestaurantClosedOrder from "@/components/client-popups/ModalRestaurantClosedOrder.vue"
@@ -218,7 +217,7 @@ export default {
     const favicon = document.querySelector("link[rel~='icon']")
     const restaurant = this.$store.getters.getOrderRestaurant
     console.log(restaurant.logo)
-    favicon.href = settings.client.url + restaurant.logo
+    favicon.href = api_url + restaurant.logo
     //
     // console.log(menuItems)
     //
@@ -234,7 +233,7 @@ export default {
       sliderLenght: 0,
       sliderIndex: 1,
       conn: null,
-      server_url: settings.proxy.url,
+      server_url: api_url,
       modal_restaurant_closed: false,
     }
   },

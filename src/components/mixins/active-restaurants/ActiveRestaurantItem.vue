@@ -26,20 +26,16 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-// const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 import {parseTime} from "@/methods/additional.js"
 
 // import
 export default {
   data(){
     return{
-      server_url: settings.proxy.url
+      server_url: api_url
     }
   },
-  // async mounted(){
-  //   this.isOpened = await fetchWorldTimeForRestaurant({start_work: this.start_work, end_work: this.end_work})
-  // },
   computed:{
     parseEndWork(){
       return parseTime(this.end_work)

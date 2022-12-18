@@ -1,7 +1,6 @@
 import { parseFromCoords } from "@/methods/address.js"
 import { parsePrice } from "@/methods/additional.js"
-const settings = require('@/settings.js')
-const url = settings.client.url
+const api_url = require('@/settings.js').api_url
 
 
 export default {
@@ -13,7 +12,7 @@ export default {
       console.log(order_id)
 
       const method = "payOrderAfterGetting/" + order_id + '?secret_key=' + secret_key
-      const requestURL = url + method
+      const requestURL = api_url + method
       // console.log(requestURL)
       const responce = await fetch(requestURL,{
         method: "PUT",
@@ -38,12 +37,9 @@ export default {
           if(getted_order){
             const secret_key = getted_order.secret_key
             ctx.commit("updateSecretKey", secret_key)
-            // const secret_key = ""
-
-            // const url = "http://localhost:8080/"
             const method = "getOrder/" + order_id + '?secret_key=' + secret_key
-            const requestURL = url + method
-            // console.log(requestURL)
+            const requestURL = api_url + method
+
             const responce = await fetch(requestURL,{
               method: "GET",
               headers: {

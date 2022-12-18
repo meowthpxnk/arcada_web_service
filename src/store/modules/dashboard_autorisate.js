@@ -1,6 +1,5 @@
 
-const settings = require('@/settings.js')
-const url = settings.client.url
+const api_url = require('@/settings.js').api_url
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -11,7 +10,7 @@ export default {
     async fetchApiKey(ctx, API_KEY){
 
       const method = "dashboard/checkApiKey"
-      const requestURL = url + method
+      const requestURL = api_url + method
 
       const dump = {API_KEY: API_KEY}
 

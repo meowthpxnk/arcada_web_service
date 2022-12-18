@@ -23,7 +23,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
+const api_url = require('@/settings.js').api_url
 // const url = settings.proxy.url
 export default {
   props: {
@@ -66,7 +66,7 @@ export default {
     getPhoto(){
 
       if (this.getDish.photo) {
-        return settings.proxy.url + this.getDish.photo
+        return api_url.proxy.url + this.getDish.photo
       } else {
         return null
       }

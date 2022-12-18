@@ -5,12 +5,11 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-// const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 export default {
   data(){
     return{
-      server_url: settings.proxy.url
+      server_url: api_url
     }
   },
   props:{

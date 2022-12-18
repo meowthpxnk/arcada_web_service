@@ -130,8 +130,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-// const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 import {isFileExtentionAllowed, parsePrice} from "@/methods/additional.js"
 export default {
   emits: ["closePopup"],
@@ -167,7 +166,7 @@ export default {
       isOpenedCategoriesList: false,
       submitting_status: false,
       file_image: null,
-      server_url: settings.proxy.url
+      server_url: api_url.proxy.url
     }
   },
   computed:{

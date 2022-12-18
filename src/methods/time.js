@@ -30,10 +30,8 @@ export async function fetchWorldTimeForRestaurant(restaurant){
 
 export async function getUTCTime(){
 
-  const settings = require('@/settings.js')
-  const url = settings.client.url + "getUTCTime"
-
-  // const url = "http://localhost:8080/getUTCTime"
+  const api_url = require('@/settings.js').api_url
+  const url = api_url + "getUTCTime"
   const responce = await fetch(url, {method: "GET"})
   const data = await responce.json()
   console.log(data)

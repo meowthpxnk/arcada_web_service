@@ -25,8 +25,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-const server_url = settings.proxy.url
+const api_url = require('@/settings.js').api_url
 export default {
   props:{
     category: Object,
@@ -34,7 +33,7 @@ export default {
   computed:{
     getIcon(){
       if(this.category.logo !== null){
-        return server_url + 'images/dish-icons/' + this.category.logo
+        return api_url + 'images/dish-icons/' + this.category.logo
       }
       return null;
     }

@@ -23,9 +23,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-const server_url = settings.proxy.url
-// console.log(settings)
+const api_url = require('@/settings.js').api_url
 import {parsePrice} from "@/methods/additional.js"
 export default {
   props:{
@@ -43,7 +41,7 @@ export default {
     },
     photo(){
       console.log(this.dish.photo)
-      const path = server_url + this.dish.photo
+      const path = api_url + this.dish.photo
       console.log(path)
       return path
     },

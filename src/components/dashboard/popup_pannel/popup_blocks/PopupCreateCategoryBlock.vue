@@ -47,9 +47,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
-// const server_url = settings.proxy.url
-// import {isEmpty} from '@/methods/additional.js'
+const api_url = require('@/settings.js').api_url
 import {categories} from '@/methods/static'
 export default {
   emits: ["closePopup"],
@@ -61,7 +59,7 @@ export default {
       active_icon: null,
 
       submitting_status: false,
-      server_url: settings.proxy.url
+      server_url: api_url.proxy.url
     }
   },
   methods:{

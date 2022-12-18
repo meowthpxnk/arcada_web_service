@@ -1,14 +1,10 @@
-const settings = require('@/settings.js')
-console.log(settings)
+const api_url = require('@/settings.js').api_url
 
 export default {
   actions: {
     async fetchMenuItems(ctx, link){
-
-      // const args = "API_KEY=" + API_KEY
-      const url = settings.client.url
       const method = "getMenu/" + link
-      const requestURL = url + method
+      const requestURL = api_url + method
       const responce = await fetch(requestURL,{
         method: "GET",
         headers: {
@@ -27,7 +23,7 @@ export default {
 
 
       const favicon = document.querySelector("link[rel~='icon']")
-      favicon.href = settings.client.url + menuItems.dump.restaurant.logo
+      favicon.href = api_url + menuItems.dump.restaurant.logo
 
       console.log(menuItems)
 
@@ -68,7 +64,6 @@ export default {
     },
     updateRestaurant(state, restaurant){
       state.restaurant = restaurant
-      // console.log(restaurant)
     },
   },
   state: {

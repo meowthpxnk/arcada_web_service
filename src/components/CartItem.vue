@@ -27,7 +27,7 @@
 </template>
 
 <script>
-const settings = require('@/settings.js')
+const api_url = require('@/settings.js').api_url
 // const url = settings.proxy.url
 export default {
   props:{
@@ -64,7 +64,7 @@ export default {
         price: dump.price,
         counter: this.item.counter,
         title: dump.title,
-        photo: settings.proxy.url + dump.photo
+        photo: api_url + dump.photo
       }
 
     },

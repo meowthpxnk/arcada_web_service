@@ -1,14 +1,12 @@
-const settings = require('@/settings.js')
-const url = settings.client.url
+const api_url = require('@/settings.js').api_url
 
 
 
 export default {
   actions: {
     async fetchRestaurants(ctx){
-      // const url = "http://localhost:8080/"
       const method = "getRestaurants"
-      const requestURL = url + method
+      const requestURL = api_url + method
       console.log(requestURL)
       const responce = await fetch(requestURL,{
         method: "GET",
@@ -17,7 +15,6 @@ export default {
         },
       })
       const restaurants_list = await responce.json()
-      // console.log(restaurants_list.dump)
       ctx.commit("updateRestaurantsList", restaurants_list.dump)
     }
   },
