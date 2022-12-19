@@ -24,7 +24,6 @@
 
 <script>
 const api_url = require('@/settings.js').api_url
-// const url = settings.proxy.url
 export default {
   props: {
     dish_id: Number,
@@ -66,7 +65,7 @@ export default {
     getPhoto(){
 
       if (this.getDish.photo) {
-        return api_url.proxy.url + this.getDish.photo
+        return api_url + this.getDish.photo
       } else {
         return null
       }
