@@ -800,7 +800,8 @@ header h1{
   align-items: center;
 }
 .active-dish-photo-container .photo img{
-  height: fit-content;
+  /* height: fit-content; */
+  object-fit: cover;
 }
 .active-dish .all-info{
   padding: 20px;
