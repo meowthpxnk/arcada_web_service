@@ -28,13 +28,8 @@ export default {
       }
     } else {
       document.location.href = "/dashboard/autorisate"
-
     }
-
     console.log(this.$store.getters.getApiKey)
-
-    // document.location.href = "/dashboard/autorisate"
-
     await this.$store.dispatch('fetchDashboardRestaurants')
     this.preloader = await false
   },

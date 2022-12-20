@@ -30,13 +30,13 @@ export default {
     ModalPreloadScreenAnswer
   },
   data(){
-    return{
-      API_KEY: '',
-      submitting_status: false,
-      preloader: true,
-      preloader_answ: false,
-      api_error: false,
-    }
+      return{
+        API_KEY: '',
+        submitting_status: false,
+        preloader: true,
+        preloader_answ: false,
+        api_error: false,
+      }
   },
   async mounted(){
     document.title = "Dashboard - Autorisation"
@@ -68,7 +68,6 @@ export default {
         this.preloader_answ = false
         this.submitting_status = false
       }
-      // localStorage.setItem('dashboard-API_KEY', this.API_KEY)
     }
   }
 }

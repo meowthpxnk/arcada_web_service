@@ -15,15 +15,9 @@
       />
     </div>
   </div>
-
-  <!-- <modal-quest
-   v-if="isShownSliderItem"
-  /> -->
-
 </template>
 
 <script>
-// import ModalQuest from "@/components/client-popups/ModalQuest.vue"
 import ActiveRestaurants  from '@/components/mixins/active-restaurants/ActiveRestaurants.vue'
 export default{
   async mounted(){
@@ -35,7 +29,6 @@ export default{
   },
   components:{
     ActiveRestaurants,
-    // ModalQuest,
   },
   data(){
     return{

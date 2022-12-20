@@ -3045,7 +3045,7 @@ header .info{
   transition: all 0.5s;
 }
 .dishes .photo img{
-  height: fit-content;
+  object-fit: cover;
 }
 
 .test-container{
