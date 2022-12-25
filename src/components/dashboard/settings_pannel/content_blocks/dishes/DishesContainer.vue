@@ -6,7 +6,6 @@
       </li>
     </ul>
   </div>
-  {{active_dish}}
 </template>
 
 <script>
@@ -20,16 +19,10 @@ export default {
     dishes(){
       return this.$store.getters.getDashboardDishes
     },
-    // active_dish(){
-    //   return this.$store.getters.getActiveDish
-    // }
   },
   methods:{
     editDish(id){
-      console.log("aaa")
-      this.$emit('editDish', 'EDIT_RESTAURANT')
-      // console.log(id)
-      //
+      this.$emit('editDish')
       this.$store.commit('setActiveDish', id)
     }
   }

@@ -5,6 +5,8 @@ import RestaurantsView from '@/views/RestaurantsView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import OrderView from '@/views/OrderView.vue'
 import DashboardAutorisate from '@/views/DashboardAutorisate.vue'
+import RedirectQRView from '@/views/RedirectQRView.vue'
+import MenuQRView from '@/views/MenuQRView.vue'
 
 const routes = [
   {
@@ -20,7 +22,18 @@ const routes = [
   {
     path: '/restaurants/:link',
     name: 'restaurant',
-    component: RestaurantsView
+    children: [
+      {
+        path: '',
+        name: 'restaurant_view',
+        component: RestaurantsView,
+      },
+      {
+        path: 'qr',
+        name: 'restaurant_qr',
+        component: MenuQRView,
+      },
+    ],
   },
   {
     path: '/dashboard',
@@ -36,6 +49,11 @@ const routes = [
     path: '/orders/:id',
     name: 'order',
     component: OrderView
+  },
+  {
+    path: '/redirectQR/:desk_key',
+    name: 'redirectQR',
+    component: RedirectQRView,
   },
   {
     path: '/:catchAll(.*)',

@@ -17,14 +17,15 @@
           </div>
           <span>CATEGORIES</span>
         </div>
-        <!-- <div class="adds">
-          <div class="hint">
-            <span>!</span>
+      </li>
+      <span class="dash"/>
+      <li :class="{'active': block==='QR_MENU'}" @click="setQR">
+        <div class="tab">
+          <div class="logo">
+            <img src="@/assets/icons/admin-icons/qr.png" alt="">
           </div>
-          <div class="alert">
-            <span>12</span>
-          </div>
-        </div> -->
+          <span>QR MENU</span>
+        </div>
       </li>
       <span class="dash"/>
       <li :class="{'active': block==='SETTINGS'}" @click="setSettings">
@@ -54,6 +55,9 @@ export default {
     setSettings(){
       this.$emit('changeBlock', 'SETTINGS')
     },
+    setQR(){
+      this.$emit('changeBlock', 'QR_MENU')
+    }
   },
   // data(){
   //   return{

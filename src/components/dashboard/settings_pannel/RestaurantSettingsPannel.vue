@@ -15,6 +15,10 @@
       @editCategory = "$emit('editCategory')"
       @createCategory = "$emit('createCategory')"
     />
+    <qr-menu-block v-if="block === 'QR_MENU'"
+      @editDesk = "$emit('editDesk')"
+      @createDesk = "$emit('createDesk')"
+    />
     <settings-block v-if="block === 'SETTINGS'"/>
 
   </div>
@@ -25,6 +29,7 @@ import SettingsPannelTabs from "@/components/dashboard/settings_pannel/SettingsP
 import MenuBlock from "@/components/dashboard/settings_pannel/content_blocks/MenuBLock.vue"
 import CategoriesBlock from "@/components/dashboard/settings_pannel/content_blocks/CategoriesBlock.vue"
 import SettingsBlock from "@/components/dashboard/settings_pannel/content_blocks/SettingsBlock.vue"
+import QrMenuBlock from "@/components/dashboard/settings_pannel/content_blocks/QrMenuBlock.vue"
 
 export default {
   data(){
@@ -51,6 +56,7 @@ export default {
     MenuBlock,
     CategoriesBlock,
     SettingsBlock,
+    QrMenuBlock,
   },
 }
 </script>

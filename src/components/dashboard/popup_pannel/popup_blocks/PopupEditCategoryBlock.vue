@@ -73,7 +73,7 @@ export default {
       id: null,
 
       submitting_status: false,
-      server_url: api_url.proxy.url
+      server_url: api_url
     }
   },
   methods:{

@@ -11,6 +11,7 @@ import restaurants from './modules/restaurants'
 import order from './modules/order'
 import dashboard_error from './modules/dashboard_error'
 import dashboard_autorisate from './modules/dashboard_autorisate'
+import qr_menu from './modules/qr_menu'
 
 
 
@@ -28,5 +29,6 @@ export default createStore({
     order,
     dashboard_error,
     dashboard_autorisate,
+    qr_menu,
   }
 });

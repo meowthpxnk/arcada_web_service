@@ -12,6 +12,8 @@
       @createCategory = "$emit('openPopUp', 'CREATE_CATEGORY')"
       @editDish = "$emit('openPopUp', 'EDIT_DISH')"
       @editCategory = "$emit('openPopUp', 'EDIT_CATEGORY')"
+      @createDesk = "$emit('openPopUp', 'CREATE_DESK')"
+      @editDesk = "$emit('openPopUp', 'EDIT_DESK')"
     />
 
   </div>

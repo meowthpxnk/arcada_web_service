@@ -10,6 +10,88 @@ function API_KEY(API_KEY) {
 
 export default {
   actions: {
+    async fetchDashboardDeleteDesk(ctx, desk_key){
+      const method = "dashboard/deleteDesk/"
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
+
+      const dump = {
+        desk_key: desk_key,
+      }
+      const responce = await fetch(requestURL, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json'},
+        body: JSON.stringify(dump)
+      })
+      const data = await responce.json()
+      console.log(data)
+      if (!(data.ok)){
+        throw new Error(data.error)
+      }
+
+      ctx.commit("deleteDesk", desk_key)
+      return data
+    },
+    async fetchDashboardCreateDesk(ctx, desk_number){
+      const restaurant_id = this.getters.getDashboardActiveRestaurant.id
+      const method = "dashboard/createDesk/" + restaurant_id
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
+
+      const dump = {
+        desk_number: desk_number,
+      }
+      const responce = await fetch(requestURL, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json'},
+        body: JSON.stringify(dump)
+      })
+      const data = await responce.json()
+      console.log(data)
+      if (!(data.ok)){
+        throw new Error(data.error)
+      }
+
+      const key = data.result.key
+
+      ctx.commit("createDesk", {desk_number, key})
+      return data
+    },
+    async fetchChangeTelegramChannel(ctx, telegram_channel_id){
+      const restaurant_id = this.getters.getDashboardActiveRestaurant.id
+      const method = "dashboard/changeTelegramChannel/" + restaurant_id
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
+      const dump = {
+        telegram_channel_id: telegram_channel_id,
+      }
+      const responce = await fetch(requestURL, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json'},
+        body: JSON.stringify(dump)
+      })
+      const data = await responce.json()
+      console.log(data)
+      if (!(data.ok)){
+        throw new Error(data.error)
+      }
+
+      ctx.commit("changeTelegramChannel", telegram_channel_id)
+      return data
+    },
+    async fetchChangeIsEnabledQrMenu(ctx){
+      const restaurant_id = this.getters.getDashboardActiveRestaurant.id
+      const method = "dashboard/changeTurnOfQrMenu/" + restaurant_id
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
+      const responce = await fetch(requestURL, {method: "POST"})
+      const data = await responce.json()
+      console.log(data)
+      if (!(data.ok)){
+        throw new Error(data.error)
+      }
+
+      ctx.commit("changeIsEnabledQrMenu")
+      return data
+      // console.log(responce.json())
+      // const method = "dashboard/changeTurnOfRestaurant/" + id
+    },
     async postChangeTurnOfRestaurant(ctx, id){
       const method = "dashboard/changeTurnOfRestaurant/" + id
       const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
@@ -33,6 +115,7 @@ export default {
 
       const responce = await fetch(requestURL,{method: "GET", 'Content-Type': 'application/json'})
       const data = await responce.json()
+      console.log(data)
       const restaurants = data.restaurants
 
       for (const resturant of restaurants) {
@@ -50,10 +133,11 @@ export default {
       const responce = await fetch(requestURL,{method: "GET"})
       const data = await responce.json()
       const menu = data.menu
+      const desks = data.desks
+      const telegram_channel = data.telegram_channel
+      const enabled_qr_menu = data.enabled_qr_menu
 
-      console.log(menu)
-
-      ctx.commit("updateDashboardMenu", menu)
+      ctx.commit("updateDashboardMenu", {menu, desks, telegram_channel, enabled_qr_menu})
 
     },
 
@@ -179,8 +263,6 @@ export default {
       })
       const responce_data = await responce.json()
 
-      // console.log(responce_data)
-
       if (isEmpty(responce_data.category.errors)){
         ctx.commit("deleteDashboardCategory", dump.id)
         return {result: 'SUCCES', data: responce_data}
@@ -190,9 +272,6 @@ export default {
     },
 
     async postDashboardEditDish(ctx, dump){
-
-      // console.log(file)
-
       const data = new FormData()
 
 
@@ -358,6 +437,23 @@ export default {
     },
   },
   mutations: {
+    deleteDesk(state, desk_key){
+      const removeIndex = state.desks.findIndex( item => item.key === desk_key );
+      state.desks.splice( removeIndex, 1 );
+    },
+    createDesk(state, {desk_number, key}){
+      const desk = {
+        number: desk_number,
+        key: key,
+      }
+      state.desks.push(desk)
+    },
+    changeTelegramChannel(state, telegram_channel){
+      state.telegram_channel = telegram_channel
+    },
+    changeIsEnabledQrMenu(state){
+      state.enabled_qr_menu = !state.enabled_qr_menu
+    },
     deleteDashboardDish(state, id){
       const removeIndex = state.dishes.findIndex( item => item.id === id );
       state.dishes.splice( removeIndex, 1 );
@@ -405,9 +501,12 @@ export default {
     updateDashboardRestaurants(state, restaurants){
       state.restaurants = restaurants
     },
-    updateDashboardMenu(state, menu){
+    updateDashboardMenu(state, {menu, desks, telegram_channel, enabled_qr_menu}){
       state.categories = menu.categories
       state.dishes = menu.dishes
+      state.desks = desks
+      state.telegram_channel = telegram_channel
+      state.enabled_qr_menu = enabled_qr_menu
     },
     addDashboardCategory(state, category){
       state.categories.push(category)
@@ -441,13 +540,26 @@ export default {
       const get_restaurant = state.restaurants.filter(restaurant => restaurant.id === id)[0]
       get_restaurant.is_online = !get_restaurant.is_online
     },
+    setActiveDesk(state, desk_number){
+      let desk;
+      try{
+        desk = state.desks.filter(desk => desk.number === desk_number)[0]
+      } catch(e){
+        console.error(e)
+      }
+      state.active_desk = desk
+    },
   },
   state: {
     restaurants:[],
     categories:[],
     dishes:[],
+    desks: [],
     active_dish: null,
     active_category: null,
+    telegram_channel: "",
+    enabled_qr_menu: false,
+    active_desk: null,
   },
   getters: {
     getDashboardActiveRestaurant: (state) => {
@@ -470,6 +582,10 @@ export default {
     getDashboardDishes: (state) => {
       return state.dishes
     },
+    getDashboardQrDesks: (state) => {
+      console.log(state.desks)
+      return state.desks
+    },
     getDashboardCategories: (state) => {
       return state.categories
     },
@@ -480,6 +596,16 @@ export default {
     getActiveCategory: (state) => {
       const active_category = state.categories.filter(category => category.id == state.active_category)[0]
       return active_category
+    },
+    getTelegramChannel: (state) => {
+      return state.telegram_channel
+    },
+    getIsEnabledQrMenu: (state) => {
+      console.log(state.enabled_qr_menu)
+      return state.enabled_qr_menu
+    },
+    getActiveDesk: (state) => {
+      return state.active_desk
     }
   },
 }

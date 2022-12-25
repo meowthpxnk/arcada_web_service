@@ -166,7 +166,7 @@ export default {
       isOpenedCategoriesList: false,
       submitting_status: false,
       file_image: null,
-      server_url: api_url.proxy.url
+      server_url: api_url
     }
   },
   computed:{

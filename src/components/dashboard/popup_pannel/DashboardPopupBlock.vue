@@ -8,7 +8,6 @@
         />
         <popup-edit-category-block
           v-if="popup.id === 'EDIT_CATEGORY'"
-          :title="'Салаты'"
           @closePopup="$emit('closePopup')"
         />
         <popup-create-dish-block
@@ -17,11 +16,18 @@
         />
         <popup-edit-dish-block
           v-if="popup.id === 'EDIT_DISH'"
-          :title="'Гамбургер РАКЕТА'"
           @closePopup="$emit('closePopup')"
         />
         <popup-create-restaurant-block
           v-if="popup.id === 'CREATE_RESTAURANT'"
+          @closePopup="closePopup"
+        />
+        <popup-edit-desk-block
+          v-if="popup.id === 'EDIT_DESK'"
+          @closePopup="closePopup"
+        />
+        <popup-create-desk-block
+          v-if="popup.id === 'CREATE_DESK'"
           @closePopup="closePopup"
         />
       </div>
@@ -35,6 +41,8 @@ import PopupEditCategoryBlock from "@/components/dashboard/popup_pannel/popup_bl
 import PopupCreateDishBlock from "@/components/dashboard/popup_pannel/popup_blocks/PopupCreateDishBlock.vue"
 import PopupEditDishBlock from "@/components/dashboard/popup_pannel/popup_blocks/PopupEditDishBlock.vue"
 import PopupCreateRestaurantBlock from "@/components/dashboard/popup_pannel/popup_blocks/PopupCreateRestaurantBlock.vue"
+import PopupEditDeskBlock from "@/components/dashboard/popup_pannel/popup_blocks/PopupEditDeskBlock.vue"
+import PopupCreateDeskBlock from "@/components/dashboard/popup_pannel/popup_blocks/PopupCreateDeskBlock.vue"
 export default {
   props: {
     popup: Object,
@@ -45,6 +53,8 @@ export default {
     PopupCreateRestaurantBlock,
     PopupEditDishBlock,
     PopupEditCategoryBlock,
+    PopupCreateDeskBlock,
+    PopupEditDeskBlock,
   },
   methods:{
     closePopup(){
