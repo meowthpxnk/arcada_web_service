@@ -1,3 +1,3 @@
 module.exports = {
-  api_url: "https://api.arcadakms.ru/",
+  api_url: "http://localhost:5000/",
 }

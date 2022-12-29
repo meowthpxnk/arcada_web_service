@@ -1,4 +1,5 @@
 @import "./variables.css";
+@import "./ymaps.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 @font-face {
@@ -309,6 +310,10 @@ header button img{
 }
 header button.active img {
   transform: rotate(180deg);
+}
+header .logo img{
+  width: 34px;
+  height: 34px;
 }
 header .logo{
   color: #fff;
@@ -2656,6 +2661,7 @@ header .info{
 }
 .another-restaurants-list .restaurant .logo{
   height: 40px;
+  width: 40px;
 }
 .another-restaurants-list .restaurant{
   display: -webkit-flex;
