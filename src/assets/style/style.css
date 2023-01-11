@@ -824,6 +824,7 @@ header h1{
   font-family: Oswald;
   font-size: 62px;
   font-weight: 100;
+  font-weight: 500;
   /* padding: 20px; */
 }
 .active-dish .all-info{
