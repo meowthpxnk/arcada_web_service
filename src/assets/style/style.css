@@ -815,13 +815,13 @@ header h1{
 }
 .active-dish .all-info .title{
   color: #fff;
-  font-family: bebasNeue;
+  font-family: Oswald;
   font-size: 32px;
   /* padding: 20px; */
 }
 .active-dish .all-info .price{
   color: #fff;
-  font-family: bebasNeue;
+  font-family: Oswald;
   font-size: 62px;
   font-weight: 100;
   /* padding: 20px; */
