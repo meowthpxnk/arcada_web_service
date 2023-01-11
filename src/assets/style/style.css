@@ -3822,6 +3822,7 @@ header .info{
   width: 100%;
 }
 .cart-text-status-bar span{
+  font-size: 14px;
   font-family: Montserrat;
   font-weight: 600;
   color: #fff;
