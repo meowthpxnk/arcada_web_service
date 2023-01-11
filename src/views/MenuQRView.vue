@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="restaurant-view-container">
-    <header-component
+    <header-component-qr
       :desk_number="desk_number"
       :show_desk_number="true"
     />
@@ -148,7 +148,7 @@ import ModalPreloaderScreen from "@/components/client-popups/ModalPreloaderScree
 import ModalRestaurantClosed from "@/components/client-popups/ModalRestaurantClosed.vue"
 import ModalOrderConfirmed from "@/components/client-popups/ModalOrderConfirmed.vue"
 import ModalQuest from "@/components/client-popups/ModalQuest.vue"
-import HeaderComponent from "@/components/HeaderComponent.vue"
+import HeaderComponentQr from "@/components/HeaderComponentQr.vue"
 import CategoriesComponent from "@/components/menu/CategoriesComponent.vue"
 import DishesComponent from "@/components/menu/DishesComponent.vue"
 import FooterCart from "@/components/FooterCart.vue"
@@ -171,7 +171,7 @@ export default {
     ModalOrderConfirmed,
     ModalRestaurantClosed,
     ModalQuest,
-    HeaderComponent,
+    HeaderComponentQr,
     CategoriesComponent,
     DishesComponent,
     FooterCart,
@@ -257,6 +257,7 @@ export default {
     },
     is_slider_active(){
       return this.$store.getters.getBanners.length > 0
+      // return false
     },
     calculateWithDelPrice(){
       const price = this.free_del_price - this.cartPrice

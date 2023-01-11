@@ -15,7 +15,7 @@ export default {
 
       // console.log(menuItems.dump.error)
       if (menuItems.dump.error){
-        document.location.href = "/restaurants"
+        document.location.href = "/"
       }
 
       var r = document.querySelector(':root');

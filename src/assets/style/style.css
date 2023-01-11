@@ -1,5 +1,4 @@
 @import "./variables.css";
-@import "./ymaps.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
 @font-face {
@@ -156,7 +155,9 @@ header .slider .button-container>button + button img{
   overflow: hidden;
 }
 .slider .slider-items li img{
-  height: fit-content;
+  /* height: fit-content; */
+  object-fit: cover;
+  object-position: center;
 }
 .modal-quest{
   position: absolute;
@@ -210,6 +211,7 @@ header .slider .button-container>button + button img{
   cursor: pointer;
   background-color: var(--color-bg-extra-light);
   transition: all 0.5s;
+  color: #000;
   /* min-width: 120px; */
 }
 .modal-quest>.container-modal-info .buttons .accept:hover{
@@ -1671,7 +1673,7 @@ header h1{
 }
 .settings-adm{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
   gap:20px;
   width: 100%;
   /* padding: 20px 0; */
@@ -1836,7 +1838,7 @@ header h1{
 
 .settings-adm .util-content.rest-banner .banner{
   height: 200px;
-  width: 100%;
+  width: 430px;
   border-radius: 6px;
   background-color: var(--color-admin-bg-regular);
   /* padding: 20px; */
@@ -1973,18 +1975,21 @@ header h1{
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
-  flex-flow: column wrap;
+  /* flex-flow: column wrap; */
   align-content: space-between;
-  /* gap: 20px; */
-  gap:0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 20px;
+  /* gap:0; */
   /* height: 580px; */
 }
-.settings-adm .settings-block{
+/* .settings-adm .settings-block{
   width: 32%;
   margin-bottom: 2%;
 
-}
-.settings-adm .settings-block
+} */
+/* .settings-adm .settings-block
 
 .settings-adm .settings-block:nth-child(3n+1) { order: 1; }
 .settings-adm .settings-block:nth-child(3n+2) { order: 2; }
@@ -1996,7 +2001,7 @@ header h1{
   flex-basis: 100%;
   width: 0;
   order: 2;
-}
+} */
 .pop-up-win{
   background-color: rgba(0,0,0,.5);
   position: absolute;

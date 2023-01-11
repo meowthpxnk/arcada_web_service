@@ -22,7 +22,7 @@
           <span>Restaurant link *</span>
         </div>
         <div class="content restaurant-link">
-          <span>inlife.com</span><span>/</span>
+          <span>{{getUrl}}</span><span>/</span>
           <input
             type="text"
             class=""
@@ -164,6 +164,9 @@ export default {
     },
   },
   computed:{
+    getUrl(){
+      return ""
+    },
     getBackgroundColor(){
       if (isHexValidColor(this.color)){
         return this.color

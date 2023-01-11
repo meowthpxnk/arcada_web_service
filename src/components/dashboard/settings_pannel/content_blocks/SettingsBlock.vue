@@ -7,7 +7,15 @@
       <customisation-settings/>
 
 
-      <div v-for="i in 1" :key="i" class="settings-block admin-box">
+
+
+
+      <delivery-settings/>
+      <banner-settings/>
+      <telegram-settings/>
+
+
+      <div class="settings-block admin-box">
         <div class="title">
           <span>Info</span>
         </div>
@@ -19,7 +27,7 @@
             <div class="util-content rest-link">
               <div class="util-box link-box">
                 <div class="text">
-                  <span>www.inlife.com</span>
+                  <span>{{getUrl}}</span>
                   <span>/</span>
                   <span class="rest-name">{{restaurant_info.link}}</span>
                 </div>
@@ -36,22 +44,20 @@
       </div>
 
 
-      <delivery-settings/>
-      <banner-settings/>
-
-
     </div>
   </div>
 </template>
 
 <script>
-import {parseTime} from "@/methods/additional.js"
+import { parseTime } from "@/methods/additional.js"
 import MainSettings from "@/components/dashboard/settings_pannel/content_blocks/settings/MainSettings.vue"
 import DeliverySettings from "@/components/dashboard/settings_pannel/content_blocks/settings/DeliverySettings.vue"
 import CustomisationSettings from "@/components/dashboard/settings_pannel/content_blocks/settings/CustomisationSettings.vue"
 import BannerSettings from "@/components/dashboard/settings_pannel/content_blocks/settings/BannerSettings.vue"
+import TelegramSettings from "@/components/dashboard/settings_pannel/content_blocks/settings/TelegramSettings.vue"
 export default {
   computed:{
+    getUrl(){return location.origin + "/restaurants"},
     restaurant_info(){
       return this.$store.getters.getDashboardActiveRestaurant
     },
@@ -66,7 +72,8 @@ export default {
     MainSettings,
     CustomisationSettings,
     DeliverySettings,
-    BannerSettings
+    BannerSettings,
+    TelegramSettings,
   },
   methods:{
     deleteRestaurant(){

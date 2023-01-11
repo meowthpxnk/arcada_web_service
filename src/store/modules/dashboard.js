@@ -55,6 +55,9 @@ export default {
       ctx.commit("createDesk", {desk_number, key})
       return data
     },
+
+
+
     async fetchChangeTelegramChannel(ctx, telegram_channel_id){
       const restaurant_id = this.getters.getDashboardActiveRestaurant.id
       const method = "dashboard/changeTelegramChannel/" + restaurant_id
@@ -76,6 +79,33 @@ export default {
       ctx.commit("changeTelegramChannel", telegram_channel_id)
       return data
     },
+
+
+    async fetchChangeTelegramAdmin(ctx, telegram_admin_id){
+      const restaurant_id = this.getters.getDashboardActiveRestaurant.id
+      const method = "dashboard/changeTelegramAdmin/" + restaurant_id
+      const requestURL = api_url + method + "?" + API_KEY(this.getters.getApiKey)
+      const dump = {
+        telegram_admin_id: telegram_admin_id,
+      }
+      const responce = await fetch(requestURL, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json'},
+        body: JSON.stringify(dump)
+      })
+      const data = await responce.json()
+      console.log(data)
+      if (!(data.ok)){
+        throw new Error(data.error)
+      }
+
+      ctx.commit("changeTelegramAdmin", telegram_admin_id)
+      return data
+    },
+
+
+
+
     async fetchChangeIsEnabledQrMenu(ctx){
       const restaurant_id = this.getters.getDashboardActiveRestaurant.id
       const method = "dashboard/changeTurnOfQrMenu/" + restaurant_id
@@ -136,8 +166,9 @@ export default {
       const desks = data.desks
       const telegram_channel = data.telegram_channel
       const enabled_qr_menu = data.enabled_qr_menu
+      const telegram_admin_id = data.telegram_admin_id
 
-      ctx.commit("updateDashboardMenu", {menu, desks, telegram_channel, enabled_qr_menu})
+      ctx.commit("updateDashboardMenu", {menu, desks, telegram_channel, enabled_qr_menu, telegram_admin_id})
 
     },
 
@@ -451,6 +482,9 @@ export default {
     changeTelegramChannel(state, telegram_channel){
       state.telegram_channel = telegram_channel
     },
+    changeTelegramAdmin(state, telegram_admin_id){
+      state.telegram_admin_id = telegram_admin_id
+    },
     changeIsEnabledQrMenu(state){
       state.enabled_qr_menu = !state.enabled_qr_menu
     },
@@ -501,12 +535,13 @@ export default {
     updateDashboardRestaurants(state, restaurants){
       state.restaurants = restaurants
     },
-    updateDashboardMenu(state, {menu, desks, telegram_channel, enabled_qr_menu}){
+    updateDashboardMenu(state, {menu, desks, telegram_channel, enabled_qr_menu, telegram_admin_id}){
       state.categories = menu.categories
       state.dishes = menu.dishes
       state.desks = desks
       state.telegram_channel = telegram_channel
       state.enabled_qr_menu = enabled_qr_menu
+      state.telegram_admin_id = telegram_admin_id
     },
     addDashboardCategory(state, category){
       state.categories.push(category)
@@ -557,9 +592,10 @@ export default {
     desks: [],
     active_dish: null,
     active_category: null,
-    telegram_channel: "",
     enabled_qr_menu: false,
     active_desk: null,
+    telegram_channel: "",
+    telegram_admin_id: "",
   },
   getters: {
     getDashboardActiveRestaurant: (state) => {
@@ -599,6 +635,9 @@ export default {
     },
     getTelegramChannel: (state) => {
       return state.telegram_channel
+    },
+    getTelegramAdmin: (state) => {
+      return state.telegram_admin_id
     },
     getIsEnabledQrMenu: (state) => {
       console.log(state.enabled_qr_menu)

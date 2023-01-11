@@ -15,12 +15,12 @@ const routes = [
     redirect: {name: 'restaurants'}
   },
   {
-    path: '/restaurants',
+    path: '',
     name: 'restaurants',
     component: HomeView
   },
   {
-    path: '/restaurants/:link',
+    path: '/:link',
     name: 'restaurant',
     children: [
       {

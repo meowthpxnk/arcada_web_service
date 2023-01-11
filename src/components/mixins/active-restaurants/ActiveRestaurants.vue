@@ -114,7 +114,7 @@ export default {
     },
     async acceptModal(){
       // this.$router.push({name:"restaurant", params: {link: this.link}})
-      window.open("/restaurants/" + this.link)
+      window.open("/" + this.link)
       // this.$store.dispatch("")
       //
       // this.$store.commit('declineModal');

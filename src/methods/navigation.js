@@ -1,6 +1,6 @@
 export function goToRestaurant(link){
   // window.open("/restaurants/" + link)
-  document.location.href = "/restaurants/" + link
+  document.location.href = "/" + link
 }
 
 

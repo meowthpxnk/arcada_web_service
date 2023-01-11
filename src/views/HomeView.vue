@@ -39,7 +39,7 @@ export default{
   },
   methods:{
     goToRestaurant(link){
-      window.location.href="/restaurants/" + link
+      window.location.href="/" + link
     },
     setOfflineAllRestaurants(){
       console.log(1)

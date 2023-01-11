@@ -17,7 +17,7 @@ export default {
       await this.$store.dispatch("getPrivateKey")
       console.log(desk_key)
       const restaurant_link = await this.$store.dispatch("fetchVerificationPrivateKey", desk_key)
-      document.location.href = await "/restaurants/"+ restaurant_link + '/qr'
+      document.location.href = await "/"+ restaurant_link + '/qr'
     } catch (e){
       console.error(e)
     }
@@ -27,7 +27,7 @@ export default {
 
     try {
       const restaurant_link = await this.$store.dispatch('fetchRegisterPrivateKey', desk_key)
-      document.location.href = "/restaurants/"+ restaurant_link + '/qr'
+      document.location.href = "/"+ restaurant_link + '/qr'
     } catch(e){
       console.error(e)
       document.location.href = "/404"

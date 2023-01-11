@@ -147,7 +147,7 @@ export default {
           this.$store.commit("clearCart")
           console.log(result.info)
           // this.$emit("backToMenu")
-          await goToPay(result.info.order_pay_url)
+          // await goToPay(result.info.order_pay_url)
           await goToOrder(result.info.order_id)
         } else {
           this.$store.commit("enableModalErrorOrder", result.errors)
