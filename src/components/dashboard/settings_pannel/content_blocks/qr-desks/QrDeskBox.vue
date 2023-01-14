@@ -49,7 +49,6 @@ export default {
       return path
     },
     link(){
-      // console.log(location)
       return location.origin + "/redirectQR/"
     },
   },

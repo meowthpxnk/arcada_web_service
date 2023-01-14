@@ -68,6 +68,9 @@ button{
 ul{
   box-sizing: border-box;
 }
+button{
+  cursor: pointer;
+}
 header{
   padding: 0 10px;
 
@@ -378,6 +381,13 @@ header h1{
 }
 .categories ul li .icon-circle.active{
   background-color: var(--color-main-app);
+}
+.categories ul li .icon-circle.active img{
+  filter: brightness(0) invert(0);
+}
+.categories ul li .icon-circle img{
+  max-height: 32px;
+  max-width: 32px;
 }
 .categories ul{
   display: -webkit-flex;
@@ -1612,7 +1622,7 @@ header h1{
   gap: 10px;
 }
 .settings-pannel .content .main .dish .main-info .title{
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
 }
 .settings-pannel .content .main .dish .main-info .price{
@@ -2081,6 +2091,33 @@ header h1{
   position: absolute;
   padding-bottom: 20px;
   width: 100%;
+}
+.win-box>.utilities .menu-type-button{
+  /* display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+.win-box>.utilities .menu-type-button button{
+  /* background-color: red; */
+  color: #fff;
+  background-color: var(--color-admin-bg-regular);
+  height: 30px;
+  font-family: Montserrat;
+  transition: all 0.5s;
+  border-radius: 4px;
+}
+.win-box>.utilities .menu-type-button button.active{
+  background-color: var(--color-admin-bg-placeholder);
+  color: #000;
+}
+.win-box>.utilities .menu-type-button button:hover{
+  color: #fff;
+  background-color: var(--color-admin-bg-placeholder);
 }
 .set-box{
   height: 40px;

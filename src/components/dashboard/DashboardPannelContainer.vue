@@ -26,9 +26,6 @@ export default {
   },
   methods:{
     async openPopUp(id){
-      // console.log(id)
-      // const checker = isHexValidColor("#aa4aec")
-      // console.log(checker)
       this.popup.is_shown = true
       this.popup.id = id
 

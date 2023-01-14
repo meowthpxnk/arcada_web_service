@@ -25,7 +25,6 @@
 </template>
 
 <script>
-// import { useRoute } from 'vue-router'
 import {parseTime} from "@/methods/additional.js"
 import { goToRestaurant } from '@/methods/navigation.js'
 import  ActiveRestaurants  from '@/components/mixins/active-restaurants/ActiveRestaurants.vue'
@@ -46,18 +45,7 @@ export default {
       this.$store.commit('disableModalClosedRestaurant');
     },
     async acceptModal(){
-      // this.$router.push({name:"restaurant", params: {link: this.link}})
       goToRestaurant(this.link)
-      // window.open("/restaurants/" + this.link)
-      // this.$store.dispatch("")
-      //
-      // this.$store.commit('declineModal');
-      //
-      //
-      //
-      // const data = await this.$store.dispatch('fetchMenuItems', this.link)
-      // await this.$store.dispatch('fetchCartItems', this.link)
-      // await this.$emit("setZeroCats", data)
     },
     setOfflineAllRestaurants(){
       this.isAllRestaurantsClosed = true
@@ -76,7 +64,6 @@ export default {
       return this.$store.getters.getRestaurant
     },
     parseOpenTime(){
-      // console.log(this.getRestaurant)
       return parseTime(this.getRestaurant.start_work)
     }
   },

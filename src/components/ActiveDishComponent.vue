@@ -73,7 +73,6 @@ export default {
     calculatePrice(){
       const rubles = (this.getDish.price/100)
       var pennies = (this.getDish.price%100)
-      // console.log(cops)
       let dump = ""
       if(pennies == 0){
         dump += rubles.toString() + '.' +"00"

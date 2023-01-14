@@ -42,25 +42,6 @@ export default {
     }
   },
   methods: {
-    // async submitClick(){
-    //   if (this.submitting_status === false){
-    //     const restaurant = {
-    //       tg_admin_id: this.tg_admin_id,
-    //       id: this.$store.getters.getDashboardActiveRestaurant.id
-    //     }
-    //     const dump = {restaurant: restaurant}
-    //
-    //     const data = await this.$store.dispatch('fetchChangeTelegramAdmin', dump)
-    //     console.log(data)
-    //     fetchChangeTelegramAdmin(ctx, telegram_admin_id)
-    //
-    //     if (data.result === 'SUCCES'){
-    //       this.setZeroSettings(data.data.restaurant.restaurant)
-    //     }
-    //
-    //     this.submitting_status = false
-    //   }
-    // },
     async submitClick(){
       console.log(123)
       if (this.submitting_status === false){
@@ -74,16 +55,6 @@ export default {
         this.submitting_status = false
       }
     },
-    // setZeroSettings(restaurant){
-    //   this.title = restaurant.title
-    //   this.start_work = parseTime(restaurant.start_work)
-    //   this.end_work = parseTime(restaurant.end_work)
-    //
-    //   this.title_old = restaurant.title
-    //   this.start_work_old = parseTime(restaurant.start_work)
-    //   this.end_work_old = parseTime(restaurant.end_work)
-    // }
-
   }
 }
 </script>

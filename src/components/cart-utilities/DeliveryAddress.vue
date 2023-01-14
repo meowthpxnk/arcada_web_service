@@ -13,7 +13,7 @@
 
 
     <div class="error" :class="{'active' : showError}">
-      <span>Incorrect address</span>
+      <span>Неправильный адрес</span>
     </div>
   </div>
 

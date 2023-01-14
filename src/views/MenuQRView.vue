@@ -307,7 +307,7 @@ export default {
     this.handleResize();
     const route = useRoute();
     const link = route.params.link;
-    const data = await this.$store.dispatch('fetchMenuItems', link)
+    const data = await this.$store.dispatch('fetchQrMenuItems', link)
     await this.$store.dispatch('fetchCartItems', link)
 
     try{
@@ -318,6 +318,11 @@ export default {
       this.$store.commit("enableErrorQRModalPrivateKey")
       console.error(e)
     }
+
+    // this.desk_number =
+
+    console.log(this.$store.getters.getDeskNumber)
+    await console.log(this.$store.getters.getDeskNumber)
 
 
     this.isShownPreloader = false

@@ -49,6 +49,9 @@ export default {
       if (!(data.result.isActive)){
         throw new Error('Isactive key');
       }
+      // console.log(data.result.desk_number)
+      const desk_number = data.result.desk_number
+      ctx.commit("updateDeskNumber", desk_number)
     },
 
 

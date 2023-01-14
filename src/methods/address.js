@@ -71,7 +71,6 @@ export async function isPlaceInDeliveryZones(address){
 
 
     if (result) {
-      // console.log(result)
       return {result: "SUCCES", address: place}
     } else {
       return {result: "ERROR", error: "NOT_INSIDE_DELIVERY_ZONES"}
@@ -86,10 +85,7 @@ export async function parseFromCoords(address){
   console.log(address)
 
   const ymaps = window.ymaps
-  // console.log(ymaps)
 
-
-  // const address_new = {latitude: 50.54903, longitude: 136.968206}
   const latitude = address.latitude
   const longitude = address.longitude
   console.log(latitude)
@@ -100,30 +96,7 @@ export async function parseFromCoords(address){
     console.log(obj)
     console.log(obj)
     return obj.properties.get("name")
-    // .properties.get('name')
   })
   console.log(response)
   return response
 }
-// export function isPlaceInZone(){
-  //   const polygons = [[50.535048720351995,136.91034899202802],[50.551347395839834,136.93961725679856]]
-  //   const coords = [50.543947, 136.92824]
-  //   // var main_zone = null
-  //   //
-  //   // for (var i = 0; i < polygons.length; i++) {
-    //   //   var points = coords
-    //   //   var vs = polygons[i]
-    //   //
-    //   //   if ((inside(points, vs)) == true) {
-      //   //     if (main_zone == null) {
-        //   //       main_zone = i
-        //   //     } else {
-          //   //
-          //   //       // if (zones[i].delivery_fee < zones[main_zone].delivery_fee) {
-            //   //       //   main_zone = i
-            //   //       // }
-            //   //     }
-            //   //   }
-            //   // }
-            //   console.log(inside(coords, polygons))
-            // }

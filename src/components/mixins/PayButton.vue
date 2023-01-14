@@ -11,10 +11,6 @@
       </div>
     </div>
   </div>
-  <!-- <progress-bar-free-del-price
-    :calcPercents="calcPercents"
-    :calculateWithDelPrice="calculateWithDelPrice"
-  /> -->
 </template>
 
 <script>
@@ -35,7 +31,6 @@ export default {
       } else {
         return 0
       }
-      // console.log()
     },
     delivery_fee(){
       return this.$store.getters.getDeliveryFee
@@ -58,7 +53,6 @@ export default {
 
       const rubles = (price/100)
       var pennies = (price%100)
-      // console.log(cops)
       let dump = ""
       if(pennies == 0){
         dump += rubles.toString() + '.' +"00"
@@ -79,7 +73,6 @@ export default {
 
       const rubles = (checkPrice/100)
       var pennies = (checkPrice%100)
-      // console.log(cops)
       let dump = ""
       if(pennies == 0){
         dump += rubles.toString() + '.' +"00"
@@ -103,16 +96,10 @@ export default {
       const is_delivery = this.$store.getters.isDelivery
       const user_data = this.$store.getters.getUserData
       const comment = this.$store.getters.getCartComment
-      // const restaurant = this.$store.getters.getRestaurant
-
-      // const isRestaurantOnline = false
-
       const restaurant = this.$store.getters.getRestaurant
-      // console.log()
 
 
       const isRestaurantOnline = await fetchWorldTimeForRestaurant(restaurant)
-      // console.log(res)
 
       if (isRestaurantOnline){
 
@@ -131,23 +118,11 @@ export default {
           },
           user_data: user_data,
         }
-
-
-
-
-
-
         const result = await validateOrderInfo(info)
-        // console.log(result.errors.length)
-        // console.log(result.errors.length)
-        // console.log(result.errors.length)
         console.log(result)
         if (result.errors.length === 0){
-          // this.$store.commit("enableModalOrderConfirmed")
           this.$store.commit("clearCart")
           console.log(result.info)
-          // this.$emit("backToMenu")
-          // await goToPay(result.info.order_pay_url)
           await goToOrder(result.info.order_id)
         } else {
           this.$store.commit("enableModalErrorOrder", result.errors)
@@ -158,10 +133,6 @@ export default {
       }
 
       this.$store.commit("disablePreloaderAnswer")
-
-
-      // console.log(result)
-
     },
     backToMenu(){
       this.$emit("backToMenu")

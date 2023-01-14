@@ -26,6 +26,15 @@ export default{
     console.log(document)
     await this.$store.dispatch("fetchRestaurants")
     this.showRestaurants = true
+
+    // const location = location
+    // console.log(location)
+    // console.log(location)
+    // console.log(location)
+    // console.log(location)
+    // console.log(location)
+    // console.log(location)
+    // console.log(location)
   },
   components:{
     ActiveRestaurants,

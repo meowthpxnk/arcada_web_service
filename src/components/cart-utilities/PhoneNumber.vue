@@ -12,7 +12,7 @@
     >
 
     <div class="error" :class="{'active' : showError}">
-      <span>Incorrect phone number</span>
+      <span>Неправильный номер телефона</span>
     </div>
   </div>
 
@@ -52,8 +52,6 @@ export default {
     },
 
     cangeInput(){
-      // $emit('changePhone', inputData, isError)
-
       this.$emit('changePhone', this.inputData, this.isError)
     },
 

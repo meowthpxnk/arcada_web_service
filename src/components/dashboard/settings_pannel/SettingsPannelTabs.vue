@@ -59,13 +59,6 @@ export default {
       this.$emit('changeBlock', 'QR_MENU')
     }
   },
-  // data(){
-  //   return{
-  //     menu: true,
-  //     category: false,
-  //     settings: false,
-  //   }
-  // },
 }
 </script>
 

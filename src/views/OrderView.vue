@@ -49,8 +49,10 @@
           <button v-else @click="payButtonAfter">оплата наличными</button>
         </div>
         <div class="status-payed" v-else-if="isWaitForDelivery">
-          <span v-if="order.delivery_type === 'DELIVERY'">Спасибо за заказ! Будет доставлено в {{getPaidTime}}.</span>
-          <span v-else>Спасибо за заказ! Будет готово в {{getPaidTime}}.</span>
+          <span>Спасибо за заказ! Ожидайте ответа оператора!😌</span>
+          <!-- <span v-if="order.delivery_type === 'DELIVERY'">Спасибо за заказ! Будет доставлено в {{getPaidTime}}.</span> -->
+          <!-- <span v-else>Спасибо за заказ! Ждите ответа оператора.</span> -->
+          <!-- <span></span> -->
         </div>
       </div>
 
@@ -127,10 +129,12 @@
           </div>
         </div>
       </div>
-      <div class="footer">
+      <div class="footer"
+      v-if="is_shown_footer"
+      >
         <active-restaurants
-          v-if="is_order_getted"
           :code="'FROM_ORDER'"
+          @notRestaurants="notRestaurants"
         />
       </div>
     </div>
@@ -235,6 +239,7 @@ export default {
       conn: null,
       server_url: api_url,
       modal_restaurant_closed: false,
+      is_shown_footer: true,
     }
   },
   components:{
@@ -299,6 +304,9 @@ export default {
 
   },
   methods:{
+    notRestaurants(){
+      this.is_shown_footer = false
+    },
     nextSliderItem(){
       if (this.sliderIndex >= this.sliderLenght - 1){
         this.sliderIndex = 0

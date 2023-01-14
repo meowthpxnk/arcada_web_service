@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import { useRoute } from 'vue-router'
 import { parseTime } from "@/methods/additional.js"
 
 export default {
@@ -45,7 +44,6 @@ export default {
   },
   computed:{
     parseOpenTime(){
-      // console.log(this.getRestaurant)
       return parseTime(this.start_work)
     }
   },

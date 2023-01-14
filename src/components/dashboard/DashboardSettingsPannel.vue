@@ -20,12 +20,6 @@ export default {
 
   computed:{
     active_restaurant(){
-      // const active_restaurant = this.$store.getters.getDashboardActiveRestaurant
-      // if (active_restaurant){
-      //   await this.$store.dispatch('fetchDashboardMenu', active_restaurant.id)
-      //   const menu = this.$store.getters.getDashboardMenu
-      //   return menu
-      // }
       return this.$store.getters.getDashboardActiveRestaurant
     }
   },

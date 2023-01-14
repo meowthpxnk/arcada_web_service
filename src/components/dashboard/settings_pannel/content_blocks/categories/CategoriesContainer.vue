@@ -1,6 +1,4 @@
 <template lang="html">
-  <!-- <DishBox/> -->
-  <!-- {{categories}} -->
   <div class="main categories-adm">
     <ul>
       <li v-for="category in categories" :key="category.id" @click="editCategory(category.id)">
@@ -15,15 +13,9 @@
 </template>
 
 <script>
-// import CategoryBox from"@/components/dashboard/settings_pannel/content_blocks/categories/CategoryBox.vue"
-// import DishBox from "@/components/dashboard/settings_pannel/content_blocks/dishes/DishBox.vue"
 import CategoryBox from "@/components/dashboard/settings_pannel/content_blocks/categories/CategoryBox.vue"
-// import CategoriesContainer from"@/components/dashboard/settings_pannel/content_blocks/categories/CategoriesContainer.vue"
 
 export default {
-  // created(){
-  //   console.log("CONTAINER")
-  // },
   computed:{
     categories(){
       return this.$store.getters.getDashboardCategories

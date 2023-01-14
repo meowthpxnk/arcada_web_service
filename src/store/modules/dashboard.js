@@ -119,8 +119,6 @@ export default {
 
       ctx.commit("changeIsEnabledQrMenu")
       return data
-      // console.log(responce.json())
-      // const method = "dashboard/changeTurnOfRestaurant/" + id
     },
     async postChangeTurnOfRestaurant(ctx, id){
       const method = "dashboard/changeTurnOfRestaurant/" + id
@@ -183,7 +181,6 @@ export default {
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
 
-      // console.log(responce_data)
 
       if (isEmpty(responce_data.category.errors)){
         ctx.commit("addDashboardCategory", responce_data.category.category)
@@ -191,10 +188,6 @@ export default {
       } else {
         return {result: 'ERROR', data: responce_data}
       }
-
-      // const menu = data.menu
-
-      // ctx.commit("updateDashboardMenu", menu)
 
     },
 
@@ -211,7 +204,6 @@ export default {
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
 
-      // console.log(responce_data)
 
       if (isEmpty(responce_data.category.errors)){
         ctx.commit("editDashboardCategory", responce_data.category.category)
@@ -219,16 +211,10 @@ export default {
       } else {
         return {result: 'ERROR', data: responce_data}
       }
-
-      // const menu = data.menu
-
-      // ctx.commit("updateDashboardMenu", menu)
-
     },
 
     async postDashboardCreateDish(ctx, dump){
 
-      // console.log(file)
 
       const data = new FormData()
 
@@ -247,7 +233,6 @@ export default {
 
       console.log(responce_data)
 
-      // console.log(responce_data)
 
       if (isEmpty(responce_data.dish.errors)){
         ctx.commit("addDashboardDish", responce_data.dish.dish)
@@ -271,7 +256,6 @@ export default {
       })
       const responce_data = await responce.json()
 
-      // console.log(responce_data)
 
       if (isEmpty(responce_data.dish.errors)){
         ctx.commit("deleteDashboardDish", dump.id)
@@ -318,7 +302,6 @@ export default {
       const responce = await fetch(requestURL,{method: "POST", body: data})
       const responce_data = await responce.json()
 
-      // console.log(responce_data)
 
       if (isEmpty(responce_data.dish.errors)){
         ctx.commit("editDashboardDish", responce_data.dish.dish)
@@ -331,7 +314,6 @@ export default {
 
     async postDashboardCreateRestaurant(ctx, dump){
 
-      // console.log(file)
 
       const data = new FormData()
 
@@ -520,6 +502,7 @@ export default {
       edited_dish.ingredients = get_dish.ingredients
       edited_dish.description = get_dish.description
       edited_dish.portion = get_dish.portion
+      edited_dish.is_full_menu = get_dish.is_full_menu
     },
     async editDashboardCategory(state, get_category){
       const edited_category = state.categories.filter(category => category.id === get_category.id)[0]
@@ -600,7 +583,6 @@ export default {
   getters: {
     getDashboardActiveRestaurant: (state) => {
       const active_restaurant = state.restaurants.filter(restaurant => restaurant.is_active === true)[0]
-      // console.log(active_restaurant)
       if (active_restaurant) {
         return active_restaurant
       }

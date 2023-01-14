@@ -7,6 +7,23 @@
     <ul>
       <li>
         <div class="title">
+          <span>Тип меню</span>
+        </div>
+        <div class="content menu-type-button">
+          <button :class="{'active':!(is_full_menu)}" @click="setNotFullMenu">
+            <span>
+              Доставка
+            </span>
+          </button>
+          <button :class="{'active':is_full_menu}" @click="setFullMenu">
+            <span>
+              Основное
+            </span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="title">
           <span>Dish title</span>
         </div>
         <div class="content">
@@ -145,7 +162,7 @@ export default {
     this.category_id = active_dish.category_id
     this.selFile = {url: null, file: null}
     this.file_image = active_dish.photo
-    this.id = active_dish.id
+    this.is_full_menu = active_dish.is_full_menu
     this.id = active_dish.id
     console.log(active_dish)
 
@@ -159,6 +176,7 @@ export default {
       ingredients: [],
       ingredients_input: '',
       selFile: {url: null, file: null},
+      is_full_menu: false,
       id: null,
 
       category_id: null,
@@ -166,7 +184,7 @@ export default {
       isOpenedCategoriesList: false,
       submitting_status: false,
       file_image: null,
-      server_url: api_url
+      server_url: api_url,
     }
   },
   computed:{
@@ -236,6 +254,7 @@ export default {
           portion: this.portion,
           ingredients: this.ingredients,
           description: this.description,
+          is_full_menu: this.is_full_menu,
           id: this.id,
         }
         const dump = {dish: dish, file: this.selFile.file}
@@ -259,6 +278,12 @@ export default {
       this.category_id = id
       this.isOpenedCategoriesList = false
     },
+    setFullMenu(){
+      this.is_full_menu = true
+    },
+    setNotFullMenu(){
+      this.is_full_menu = false
+    }
   }
 }
 </script>

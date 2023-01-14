@@ -3,8 +3,7 @@
     <!-- <svg>
       <img src="@/assets/svgs/categories/1.svg" alt="">
     </svg> -->
-    <img :src="server_url + 'images/dish-icons/' + 'black_' +category.logo" v-if="isActive">
-    <img :src="server_url + 'images/dish-icons/' + category.logo" alt="" v-else>
+    <img :src="server_url + 'images/dish-icons/' + category.logo">
   </div>
   <p>{{category.title}}</p>
 </template>

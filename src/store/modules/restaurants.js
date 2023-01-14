@@ -16,6 +16,24 @@ export default {
       })
       const restaurants_list = await responce.json()
       ctx.commit("updateRestaurantsList", restaurants_list.dump)
+      // console.log()
+      if (location.host === 'localhost:8080'){
+        document.location.href = '/sobaka'
+      }
+
+      switch (location.host) {
+        case 'raketa.cafe':
+          document.location.href = '/raketa'
+          break
+        case 'teplo.cafe':
+          document.location.href = '/teplo'
+          break
+        // case 'localhost:8080':
+        //   document.location.href = '/sobaka'
+        //   break
+        default:
+          break
+      }
     }
   },
   mutations: {

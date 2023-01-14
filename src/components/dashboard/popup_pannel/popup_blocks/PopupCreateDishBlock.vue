@@ -1,18 +1,35 @@
 <template lang="html">
   <div class="title">
-    Creating Dish
+    Создание блюда
   </div>
   <div class="utilities">
     <ul>
       <li>
         <div class="title">
-          <span>Dish title</span>
+          <span>Тип меню</span>
+        </div>
+        <div class="content menu-type-button">
+          <button :class="{'active':!(is_full_menu)}" @click="setNotFullMenu">
+            <span>
+              Доставка
+            </span>
+          </button>
+          <button :class="{'active':is_full_menu}" @click="setFullMenu">
+            <span>
+              Основное
+            </span>
+          </button>
+        </div>
+      </li>
+      <li>
+        <div class="title">
+          <span>Название</span>
         </div>
         <div class="content">
           <input
             type="text"
             class="set-box"
-            placeholder="Enter the dish title"
+            placeholder="Введите название"
             v-model="title"
             ref="title"
           >
@@ -20,7 +37,39 @@
       </li>
       <li>
         <div class="title">
-          <span>Dish price</span>
+          <span>Категория</span>
+        </div>
+        <div class="content category">
+          <div
+            class="set-box"
+            :class="[isSelectedCategory ? 'active' : 'inactive']"
+            @click="closeCategoriesList"
+          >
+            <span v-if="isSelectedCategory">{{selectedCategoryTitle}}</span>
+            <span v-else>Выберете категорию</span>
+            <div class="buttons">
+              <button v-if="isSelectedCategory" class="close" @click.stop="category_id = null">
+                <img src="@/assets/icons/admin-icons/close.png" alt="">
+              </button>
+              <button class="arrow"
+                @click="closeCategoriesList"
+              >
+                <img src="@/assets/icons/admin-icons/arrow.png" alt="">
+              </button>
+            </div>
+          </div>
+          <div class="categories-list" v-if="isOpenedCategoriesList">
+            <ul>
+              <li v-for="category in categories" :key="category.id" @click="setCategoryId(category.id)">
+                {{category.title}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="title">
+          <span>Цена</span>
         </div>
         <div class="content">
           <input
@@ -33,7 +82,7 @@
       </li>
       <li>
         <div class="title">
-          <span>Dish photo</span>
+          <span>Фотография</span>
         </div>
         <div class="content photo">
           <div class="photo">
@@ -57,33 +106,33 @@
       </li>
       <li>
         <div class="title">
-          <span>Dish portion</span>
+          <span>Грамовка / Порция</span>
         </div>
         <div class="content">
           <input
             type="text"
             class="set-box"
-            placeholder="Enter the dish portion"
+            placeholder="Введите порцию / грамовку"
             v-model="portion"
           >
         </div>
       </li>
       <li>
         <div class="title">
-          <span>Dish description</span>
+          <span>Описание</span>
         </div>
         <div class="content">
           <textarea
             type="text"
             class="set-box area"
-            placeholder="Enter the description of dish"
+            placeholder="Введите описане блюда"
             v-model="description"
           />
         </div>
       </li>
       <li>
         <div class="title">
-          <span>Dish ingredients</span>
+          <span>Состав блюда</span>
         </div>
         <div class="content ingredients">
           <div class="ingredients-list">
@@ -98,7 +147,7 @@
           </div>
           <div class="dash"/>
           <div class="ingredients-input">
-            <input type="text" placeholder="Enter ingredient"
+            <input type="text" placeholder="Введите игредиент"
               @keyup.enter="addToIngredientList"
               v-model="ingredients_input"
               ref="ingredient_input"
@@ -108,38 +157,6 @@
             </button>
           </div>
 
-        </div>
-      </li>
-      <li>
-        <div class="title">
-          <span>Dish category</span>
-        </div>
-        <div class="content category">
-          <div
-            class="set-box"
-            :class="[isSelectedCategory ? 'active' : 'inactive']"
-            @click="closeCategoriesList"
-          >
-            <span v-if="isSelectedCategory">{{selectedCategoryTitle}}</span>
-            <span v-else>Choose category</span>
-            <div class="buttons">
-              <button v-if="isSelectedCategory" class="close" @click.stop="category_id = null">
-                <img src="@/assets/icons/admin-icons/close.png" alt="">
-              </button>
-              <button class="arrow"
-                @click="closeCategoriesList"
-              >
-                <img src="@/assets/icons/admin-icons/arrow.png" alt="">
-              </button>
-            </div>
-          </div>
-          <div class="categories-list" v-if="isOpenedCategoriesList">
-            <ul>
-              <li v-for="category in categories" :key="category.id" @click="setCategoryId(category.id)">
-                {{category.title}}
-              </li>
-            </ul>
-          </div>
         </div>
       </li>
     </ul>
@@ -166,6 +183,7 @@ export default {
       description: '',
       ingredients: [],
       ingredients_input: '',
+      is_full_menu: true,
       selFile: {url: null, file: null},
 
       category_id: null,
@@ -195,12 +213,10 @@ export default {
       const file = event.target.files[0]
       this.selFile.url = URL.createObjectURL(file)
       this.selFile.file = file
-      // console.log(this.selFile)
       console.log(this.selFile)
     },
     deleteFromIngredientList(id){
       this.ingredients.splice(id, 1)
-      // console.log(id)
     },
     addToIngredientList(){
       const isExisted = this.ingredients
@@ -213,18 +229,6 @@ export default {
     },
 
     async submitClicked(){
-      // const dish = {
-      //   title: this.title,
-      //   category_id: this.category_id,
-      //   price: this.price*100,
-      //   portion: this.portion,
-      //   ingredients: this.ingredients,
-      //   description: this.description,
-      // }
-      // const dump = {dish: dish, file: this.selFile.file}
-      // const data = await this.$store.dispatch('postDashboardCreateDish', dump)
-      // console.log(data)
-
       if (this.submitting_status === false){
         this.submitting_status = true
         const dish = {
@@ -234,12 +238,9 @@ export default {
           portion: this.portion,
           ingredients: this.ingredients,
           description: this.description,
+          is_full_menu: this.is_full_menu,
         }
         const dump = {dish: dish, file: this.selFile.file}
-        // console.log(dish)
-
-
-
         const data = await this.$store.dispatch('postDashboardCreateDish', dump)
         if (data.result === 'SUCCES'){
           this.$emit('closePopup')
@@ -255,6 +256,12 @@ export default {
       this.category_id = id
       this.isOpenedCategoriesList = false
     },
+    setFullMenu(){
+      this.is_full_menu = true
+    },
+    setNotFullMenu(){
+      this.is_full_menu = false
+    }
   }
 }
 </script>
