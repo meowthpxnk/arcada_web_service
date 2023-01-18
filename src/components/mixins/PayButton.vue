@@ -68,7 +68,7 @@ export default {
       let checkPrice = this.cartPrice;
 
       if ((this.cartPrice < this.free_del_price)&&(this.$store.getters.isDelivery)){
-        checkPrice += this.delivery_fee
+        checkPrice += this.delivery_fee + this.$store.getters.getOrderTaxes
       }
 
       const rubles = (checkPrice/100)

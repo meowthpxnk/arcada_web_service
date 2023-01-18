@@ -174,7 +174,7 @@ export default {
   },
   computed:{
     parseDeliveryFee(){
-      return parsePrice(this.$store.getters.getDeliveryFee)
+      return parsePrice(this.$store.getters.getDeliveryFee + this.$store.getters.getOrderTaxes)
     },
     isTypeDelivery(){
       return this.$store.getters.isDelivery

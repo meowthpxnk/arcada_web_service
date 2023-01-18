@@ -17,7 +17,21 @@ export default {
   },
   computed:{
     dishes(){
-      return this.$store.getters.getDashboardDishes
+      let dishes = this.$store.getters.getDashboardDishes
+      const categories = this.$store.getters.getDashboardCategories
+      const filters = this.$store.getters.getDashboardDishesFilters
+      console.log(dishes)
+      console.log(categories)
+      console.log(filters)
+      if (filters.category_id) {
+        dishes = dishes.filter(item => item.category_id === filters.category_id)
+      }
+      console.log(dishes)
+      if (filters.text) {
+        dishes = dishes.filter(item => item.title.toLowerCase().indexOf(filters.text.toLowerCase()) === 0)
+      }
+      console.log(dishes)
+      return dishes
     },
   },
   methods:{

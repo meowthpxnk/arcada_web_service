@@ -17,7 +17,7 @@
           </button>
           <button :class="{'active':is_full_menu}" @click="setFullMenu">
             <span>
-              Основное
+              Кафе
             </span>
           </button>
         </div>

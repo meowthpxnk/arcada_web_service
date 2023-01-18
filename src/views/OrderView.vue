@@ -72,7 +72,8 @@
         </div>
         <div class="cont">
           <div class="title">
-            <span>Стоимость заказа</span>
+            <span v-if="(order.delivery_type === 'DELIVERY')&(order.delivery_fee!== '0.00')">Стоимость заказа c доставкой</span>
+            <span v-else>Стоимость заказа</span>
           </div>
           <div class="info">
             <span>{{total_price}}</span>

@@ -212,6 +212,7 @@ import ActiveDishButton from "@/components/ActiveDishButton.vue"
 import { useRoute } from 'vue-router'
 import { fetchWorldTimeForRestaurant } from '@/methods/time.js'
 import { parsePrice } from '@/methods/additional.js'
+import {parseAddress} from "@/methods/address.js"
 
 export default {
   components: {
@@ -346,7 +347,7 @@ export default {
     const link = route.params.link;
     const data = await this.$store.dispatch('fetchMenuItems', link)
     await this.$store.dispatch('fetchCartItems', link)
-    this.isShownPreloader = false
+
     // const res = await this.$store.dispatch('fetchWorldTime')
 
     const restaurant = this.$store.getters.getRestaurant
@@ -362,6 +363,40 @@ export default {
 
 
     // await checkTime()
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    while(!(window.ymaps)){
+      await delay(100);
+    }
+    await delay(500);
+
+    // const user_address = this.$store.getters.getUserData.address
+    // console.log(user_address)
+
+
+    const user_data = localStorage.getItem("user_data")
+    if (user_data){
+      const dump_data = JSON.parse(user_data)
+      if (dump_data.address){
+        const address = await parseAddress(dump_data.address)
+
+        console.log(dump_data.address)
+
+        if (address.result === "ERROR"){
+          console.error("error_address")
+        } else {
+          this.$store.commit("setOrderTaxes", address.taxes)
+        }
+
+
+      }
+    }
+
+
+
+
+
+    this.isShownPreloader = await false
   },
   unmounted() {
     window.removeEventListener('resize', this.handleResize);

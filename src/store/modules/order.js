@@ -11,6 +11,7 @@ export default {
       console.log(secret_key)
       console.log(order_id)
 
+
       const method = "payOrderAfterGetting/" + order_id + '?secret_key=' + secret_key
       const requestURL = api_url + method
       // console.log(requestURL)
@@ -49,10 +50,6 @@ export default {
 
 
             const data = await responce.json()
-
-            console.log("datadatadatadatadatadatadata")
-            console.log(data)
-            console.log("datadatadatadatadatadatadata")
 
             const order = data.dump
             // console.log(order.error)
@@ -159,6 +156,9 @@ export default {
     },
     updateSecretKey(state, secret_key){
       state.secret_key = secret_key
+    },
+    setOrderTaxes(state, taxes){
+      state.taxes = taxes
     }
   },
   state: {
@@ -182,6 +182,7 @@ export default {
       logo: null,
     },
     restaurants_list: [],
+    taxes: 0,
   },
   getters: {
     getSecretKey: (state) => {
@@ -214,6 +215,9 @@ export default {
     },
     getPaidTime: (state) => {
       return state.paid_time
+    },
+    getOrderTaxes: (state) => {
+      return state.taxes
     }
   },
 }

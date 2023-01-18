@@ -4209,5 +4209,17 @@ header .info{
 .desk .link .copy-button:hover{
   background-color: var(--color-admin-bg-regular);
 }
+.dishes-filter-cont{
+  padding: 10px;
+}
+.dishes-filter{
+  background-color: var(--color-admin-bg-dark);
+  color: #fff;
+  font-family: Montserrat;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  /* margin: 10px; */
+}
 /* .call-to-waiter-button */
 /* @media screen and (min-width: 300px) {} */

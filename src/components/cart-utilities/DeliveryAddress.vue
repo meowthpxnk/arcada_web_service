@@ -52,7 +52,9 @@ export default {
         this.$store.commit("updateAddress", null)
 
       } else {
+        // console.log(address.taxes)
         this.$emit('changeAddress', address.coords)
+        this.$store.commit("setOrderTaxes", address.taxes)
         this.$store.commit("updateAddress", this.inputData)
       }
     },

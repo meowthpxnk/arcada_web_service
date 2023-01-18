@@ -567,6 +567,19 @@ export default {
       }
       state.active_desk = desk
     },
+    setDishesFilterCategoryId(state, category_id){
+      state.dishes_filter.category_id = category_id
+    },
+    deleteDishesFilterCategoryId(state){
+      state.dishes_filter.category_id = null
+    },
+    changeDishesFilterText(state, text){
+      state.dishes_filter.text = text
+    }
+    // deleteDishesFilters(state){
+    //   state.dishes_filter.category_id = null
+    //   state.dishes_filter.text = ""
+    // }
   },
   state: {
     restaurants:[],
@@ -579,6 +592,11 @@ export default {
     active_desk: null,
     telegram_channel: "",
     telegram_admin_id: "",
+
+    dishes_filter: {
+      category_id: null,
+      text: "",
+    },
   },
   getters: {
     getDashboardActiveRestaurant: (state) => {
@@ -599,6 +617,9 @@ export default {
     },
     getDashboardDishes: (state) => {
       return state.dishes
+    },
+    getDashboardDishesFilters: (state) => {
+      return state.dishes_filter
     },
     getDashboardQrDesks: (state) => {
       console.log(state.desks)

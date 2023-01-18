@@ -51,6 +51,7 @@ export async function validateOrderInfo(info){
     if(parse_address.result === "SUCCES"){
       dump_info.user_data.address = {'latitude': parse_address.address[0], 'longitude': parse_address.address[1]}
       dump_info.user_data.address_text = address
+      dump_info.order_taxes = parse_address.taxes
     } else {
       errors.push({'ADDRESS': parse_address.error})
     }

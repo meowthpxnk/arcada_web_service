@@ -1,3 +1,6 @@
+import {delivery_zones} from '@/methods/static.js'
+import {zone} from '@/methods/static.js'
+
 
 export async function parseAddress(request){
   const ymaps = window.ymaps
@@ -34,8 +37,17 @@ export async function parseAddress(request){
       return {result: "ERROR", error: error}
     }
 
+
+
     const coords = await obj.geometry.getCoordinates()
-    return {result: "SUCCES", coords: coords}
+
+    const del_zone = await isPlaceInDeliveryZonesCoords(coords)
+
+    if (del_zone.result !== "SUCCES") {
+      return {result: "ERROR", error: "Not in del_zone"}
+    }
+
+    return {result: "SUCCES", coords: coords, taxes: del_zone.taxes}
   })
 
   return response
@@ -59,7 +71,7 @@ export function isPlaceInZone(place, zone) {
 }
 
 
-import {zone} from '@/methods/static.js'
+
 export async function isPlaceInDeliveryZones(address){
 
 
@@ -67,17 +79,64 @@ export async function isPlaceInDeliveryZones(address){
 
   if (adress_get.result === "SUCCES"){
     const place = adress_get.coords
-    const result = isPlaceInZone(place, zone);
+    // const result = isPlaceInZone(place, zone);
+
+
+    let taxes = null
+    let result = false
+
+    for (let del_zone of delivery_zones) {
+      if (isPlaceInZone(place, del_zone.coordinates_list)){
+        if (!(result)){
+          result = true
+        }
+        if (taxes){
+          if (taxes < del_zone.price){
+            taxes = del_zone.price
+          }
+        } else {
+          taxes = del_zone.price
+        }
+      }
+    }
 
 
     if (result) {
-      return {result: "SUCCES", address: place}
+      return {result: "SUCCES", address: place, taxes: taxes}
     } else {
       return {result: "ERROR", error: "NOT_INSIDE_DELIVERY_ZONES"}
     }
 
   }
   return {result: "ERROR", error: "NOT_VALID_ADDRESS"}
+}
+
+
+export async function isPlaceInDeliveryZonesCoords(coords){
+
+  let taxes = null
+  let result = false
+
+  for (let del_zone of delivery_zones) {
+    if (isPlaceInZone(coords, del_zone.coordinates_list)){
+      if (!(result)){
+        result = true
+      }
+      if (taxes){
+        if (taxes < del_zone.price){
+          taxes = del_zone.price
+        }
+      } else {
+        taxes = del_zone.price
+      }
+    }
+  }
+
+  if (result) {
+    return {result: "SUCCES", taxes: taxes}
+  }
+
+  return {result: "ERROR", error: "NOT_INSIDE_DELIVERY_ZONES"}
 }
 
 
