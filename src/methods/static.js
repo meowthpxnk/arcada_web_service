@@ -22,6 +22,8 @@ const categories = [
   'sauces.png',
   'pasta.png',
   'garnirs.png',
+
+  'wok.png',
 ]
 const zone = [
   [50.553133327741875, 136.94931283583776],

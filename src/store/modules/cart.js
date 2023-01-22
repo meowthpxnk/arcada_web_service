@@ -39,6 +39,9 @@ export default {
     updateComment(state, comment){
       state.comment = comment
     },
+    updateDeliveryTime(state, delivery_time){
+      state.delivery_time = delivery_time
+    },
     clearCart(state){
 
       console.log("CLEARING")
@@ -54,6 +57,7 @@ export default {
     cart: [],
     storage_link: null,
     comment: null,
+    delivery_time: "DEFAULT",
   },
   getters: {
     cartGetCommand: (state) => {
@@ -64,6 +68,9 @@ export default {
     },
     getCartComment: (state) => {
       return state.comment
+    },
+    getDeliveryTime: (state) => {
+      return state.delivery_time
     }
   },
 }

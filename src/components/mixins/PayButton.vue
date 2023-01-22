@@ -97,6 +97,7 @@ export default {
       const user_data = this.$store.getters.getUserData
       const comment = this.$store.getters.getCartComment
       const restaurant = this.$store.getters.getRestaurant
+      const delivery_time = this.$store.getters.getDeliveryTime
 
 
       const isRestaurantOnline = await fetchWorldTimeForRestaurant(restaurant)
@@ -115,8 +116,10 @@ export default {
             comment: comment,
             delivery_type: delivery_type,
             link: restaurant.link,
+            delivery_time: delivery_time,
           },
           user_data: user_data,
+          restaurant: restaurant,
         }
         const result = await validateOrderInfo(info)
         console.log(result)

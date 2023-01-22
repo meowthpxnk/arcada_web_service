@@ -87,6 +87,14 @@
             <span>{{order.delivery_fee}}</span>
           </div>
         </div>
+        <div class="cont" v-if="(order.delivery_type === 'DELIVERY')">
+          <div class="title">
+            <span>Время доставки</span>
+          </div>
+          <div class="info">
+            <span>{{delivery_time}}</span>
+          </div>
+        </div>
         <div class="cont" v-if="order.delivery_type === 'DELIVERY'">
           <div class="title">
             <span>Адрес доставки</span>
@@ -269,6 +277,13 @@ export default {
     },
     order(){
       return this.$store.getters.getOrderInfo
+    },
+    delivery_time(){
+      const delivery_time = this.order.delivery_time
+      if (delivery_time === "DEFAULT"){
+        return "Ближайшее"
+      }
+      return parseTime(this.order.delivery_time)
     },
     total_price(){
       console.log(this.order.total_price)

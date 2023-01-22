@@ -4221,5 +4221,56 @@ header .info{
   width: 100%;
   /* margin: 10px; */
 }
+.change-delivery-time{
+  /* background-color: var(--color-bg-dark); */
+  background-color: #fff;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+}
+.change-delivery-time img{
+  filter: brightness(0) invert(0);
+  width: 16px;
+  height: 16px;
+}
+.phone-number.delivery-time{
+  position: relative;
+}
+.phone-number.delivery-time .button-wrapper{
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-right: 10px;
+}
+.phone-number.delivery-time button{
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+  /* margin: auto; */
+  /* margin-top: auto; */
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  justify-content: center;
+}
+.phone-number.delivery-time .input-text{
+  background-color: var(--color-bg-light);
+  width: 100%;
+  padding: 20px;
+  font-family: Montserrat;
+  border-radius: 0 10px;
+  color: #fff;
+  font-size: 18px;
+}
+
 /* .call-to-waiter-button */
 /* @media screen and (min-width: 300px) {} */

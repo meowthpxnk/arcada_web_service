@@ -46,6 +46,21 @@
             </li>
           </Transition>
 
+          <Transition name="cart_util_fade">
+            <li v-if="isTypeDelivery">
+              <div class="cart-description title">
+                <span>Время доставки</span>
+              </div>
+              <order-delivery-time
+              @changeDeliveryTime="changeDeliveryTime"
+              />
+
+              <div class="dash"><span>dash</span></div>
+            </li>
+          </Transition>
+
+
+
           <li class="order-cart-items">
             <div class="cart-description title cart-products">
               <span>Продукты в заказе</span>
@@ -119,6 +134,7 @@
 import CartItem from "@/components/CartItem.vue"
 import DeliveryType from "@/components/cart-utilities/DeliveryType.vue"
 import OrderComment from "@/components/cart-utilities/OrderComment.vue"
+import OrderDeliveryTime from "@/components/cart-utilities/OrderDeliveryTime.vue"
 import DeliveryAddress from "@/components/cart-utilities/DeliveryAddress.vue"
 import PhoneNumber from "@/components/cart-utilities/PhoneNumber.vue"
 import YourName from "@/components/cart-utilities/YourName.vue"
@@ -132,6 +148,7 @@ export default {
       phone: null,
       address: null,
       name: null,
+      delivery_time: null,
     }
   },
   props: {
@@ -147,9 +164,10 @@ export default {
     DeliveryAddress,
     PhoneNumber,
     YourName,
+    OrderDeliveryTime,
   },
   emits: [
-    "minusCartItem", "plusCartItem"
+    "minusCartItem", "plusCartItem", "changeDeliveryTime"
   ],
   methods:{
     minusCartItem(item_id){
@@ -170,6 +188,18 @@ export default {
     },
     changeAddress(address){
       this.address = address
+    },
+    changeDeliveryTime(delivery_time, isError){
+      if (isError){
+        // this.delivery_time = null
+        this.$store.commit('updateDeliveryTime', null)
+      } else if (delivery_time === "DEFAULT"){
+        // this.delivery_time = "DEFAULT"
+        this.$store.commit('updateDeliveryTime', "DEFAULT")
+      } else {
+        // this.delivery_time = delivery_time
+        this.$store.commit('updateDeliveryTime', delivery_time)
+      }
     }
   },
   computed:{
@@ -179,6 +209,9 @@ export default {
     isTypeDelivery(){
       return this.$store.getters.isDelivery
     },
+    // isDelivery(){
+    //   return this.isTypeDelivery
+    // },
     isFreeDelivery(){
       if(this.isTypeDelivery){
         return this.cartPrice < this.$store.getters.getFreeDeliveryPrice

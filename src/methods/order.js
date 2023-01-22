@@ -7,6 +7,9 @@ export async function validateOrderInfo(info){
   const delivery_type = info.order.delivery_type
   const link = info.order.link
 
+  const delivery_time = info.order.delivery_time
+  // const delivery_time = 4000
+
 
 
   const phone = info.user_data.phone
@@ -18,6 +21,7 @@ export async function validateOrderInfo(info){
       cart: cart,
       comment: comment,
       delivery_type: delivery_type,
+      delivery_time: delivery_time,
       link: link,
     },
     user_data: {
@@ -31,19 +35,29 @@ export async function validateOrderInfo(info){
 
   const address = info.user_data.address
 
-  // console.log(address)
-  // console.log("TEST = TEST = TEST = TEST = TEST = TEST = ")
-  // console.log(delivery_type === "DELIVERY")
-  // console.log(address !== null)
-  // console.log(address !== '')
-  // console.log((true)|(false))
-  // console.log("TEST = TEST = TEST = TEST = TEST = TEST = ")
 
   if ((delivery_type === "DELIVERY")&((address === null)|(address === ""))) {
     errors.push({'DELIVERY_TYPE': "ADDRESS_NOT_EXISTED"})
   }
 
   if (delivery_type === "DELIVERY"){
+
+    switch(delivery_time){
+      case null:
+        errors.push({'DELIVERY_TIME': "DELIVERY_TIME_ERROR"})
+        break;
+      case "DEFAULT":
+        break;
+      default:
+        if (!((delivery_time >= 0) && (delivery_time < 1440))){
+          errors.push({'DELIVERY_TIME': "DELIVERY_TIME_ERROR"})
+        } else if (!((delivery_time >= info.restaurant.start_work)&&(delivery_time < info.restaurant.end_work))){
+          errors.push({'DELIVERY_TIME': "DELIVERY_TIME_ERROR_REST"})
+        }
+        break
+    }
+
+
     const parse_address = await isPlaceInDeliveryZones(address)
 
     console.log(parse_address)
@@ -55,6 +69,8 @@ export async function validateOrderInfo(info){
     } else {
       errors.push({'ADDRESS': parse_address.error})
     }
+  } else {
+    dump_info.delivery_time = "DEFAULT"
   }
 
 

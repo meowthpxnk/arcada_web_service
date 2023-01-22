@@ -120,6 +120,7 @@ export default {
 
       state.comment = order.comment
       state.delivery_type = order.delivery_type
+      state.delivery_time = order.delivery_time
       state.status = order.status
       state.total_price = order.total_price
       if(order.delivery_type === "DELIVERY"){
@@ -169,6 +170,7 @@ export default {
     status: '',
     cart: [],
     delivery_fee: 0,
+    delivery_time: null,
     total_price: 0,
     paid_time: 319,
     user_data: {
@@ -202,6 +204,7 @@ export default {
         status: state.status,
         total_price: state.total_price,
         delivery_fee: state.delivery_fee,
+        delivery_time: state.delivery_time,
       }
     },
     getOrderCart: (state) => {
