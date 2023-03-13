@@ -3,7 +3,7 @@
     <nav>
       <div class="dishes-container">
         <ul>
-          <li v-for="dish in dishes" :key="dish.id">
+          <li v-for="dish in filter" :key="dish.id">
             <menu-item
               :dish="dish"
               :cart="cart"
@@ -27,6 +27,14 @@ export default {
     dishes: Array,
     cart: Array,
     cartPrice: Boolean,
+  },
+  computed:{
+    filter(){
+      const dishes = this.dishes
+      const key = 'title'; // ключ, по которому будем сортировать
+      const sorted = dishes.sort((frst, sec) => frst[key] > sec[key] ? 1 : -1);
+      return sorted
+    }
   },
   components:{
     MenuItem
