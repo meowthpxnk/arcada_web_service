@@ -56,6 +56,7 @@ export default {
         },
       })
       const menuItems = await responce.json()
+      console.log(responce)
 
       console.log(menuItems)
 

@@ -7,7 +7,7 @@
     </div>
     <div v-show="cartPrice>0" class="button-mixin-wrap">
       <div class="pay-button button-mixin">
-        <button @click="payButton">оплатить {{calculatePrice}}Р</button>
+        <button @click="payButton">подтвердить {{calculatePrice}}Р</button>
       </div>
     </div>
   </div>

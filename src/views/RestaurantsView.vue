@@ -352,12 +352,16 @@ export default {
 
     const restaurant = this.$store.getters.getRestaurant
 
+    console.log(restaurant)
+
 
     const res = await fetchWorldTimeForRestaurant(restaurant)
     console.log(res)
     if (!(res)){
       this.$store.commit("enableModalClosedRestaurant")
     }
+
+    console.log(this.$store.getters.getCategories)
 
     this.activeCategoryID = this.$store.getters.getCategories[0].id
 
