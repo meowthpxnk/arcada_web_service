@@ -43,8 +43,8 @@
 
       <div class="cart-text-status-bar">
         <div class="pay-buttons" v-if="isWaitForPay">
-          <button v-if="order.delivery_type === 'DELIVERY'" @click="payButton">оплатить</button>
-          <button v-else @click="payButton">оплатить</button>
+          <button v-if="order.delivery_type === 'DELIVERY'" @click="payButton">подтвердить</button>
+          <button v-else @click="payButton">подтвердить</button>
           <button v-if="order.delivery_type === 'DELIVERY'" @click="payButtonAfter">оплата курьеру</button>
           <button v-else @click="payButtonAfter">оплата наличными</button>
         </div>
